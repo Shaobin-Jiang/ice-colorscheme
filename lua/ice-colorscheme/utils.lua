@@ -23,4 +23,28 @@ M.ordered_pair = function(t)
     end
 end
 
+-- Read content from a file
+---@return string | nil
+M.read = function(file)
+    local f = io.open(file, "r")
+    if f == nil then
+        return
+    else
+        local content = f:read "*a"
+        f:close()
+        return content
+    end
+end
+
+-- Write content to a file
+---@param file string
+---@param content string
+M.write = function(file, content)
+    local f = io.open(file, "w")
+    if f ~= nil then
+        f:write(content)
+        f:close()
+    end
+end
+
 return M
